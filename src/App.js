@@ -6,7 +6,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      item: []
+      items: [
+        'Buy milk',
+        'Call girlfriend',
+        'Book a movie'
+      ]
     }
   }
 
@@ -14,7 +18,7 @@ class App extends React.Component {
     return (
       <div>
         <TodoForm />
-        <TodoList />
+        <TodoList items={this.state.items} />
       </div>
     );
   }
