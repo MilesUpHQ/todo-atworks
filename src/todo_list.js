@@ -1,10 +1,10 @@
 import React from 'react';
+import TodoItem from './todo_item';
 
 const TodoList = function () {
   return (
     <ul className="list-group">
-      <li className="list-group-item">Item 1</li>
-      <li className="list-group-item">Item 2  </li>
+      <TodoItem />
     </ul>
   )
 }
