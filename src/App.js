@@ -6,19 +6,32 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [
-        'Buy milk',
-        'Call girlfriend',
-        'Book a movie'
-      ]
+      items: []
     }
+  }
+
+  addTodo(item) {
+    this.setState({
+      items: [...this.state.items, item]
+    })
+  }
+
+  removeItem(item) {
+    const index = this.state.items.indexOf(item)
+    console.log(index);
+    const filteredItems = this.state.items.filter(function (item) {
+      return item !== this.state.items[index]
+    }, this)
+    this.setState({
+      items: filteredItems
+    })
   }
 
   render() {
     return (
       <div>
-        <TodoForm />
-        <TodoList items={this.state.items} />
+        <TodoForm addTodo={this.addTodo.bind(this)} />
+        <TodoList items={this.state.items} handleClick={this.removeItem.bind(this)} />
       </div>
     );
   }
