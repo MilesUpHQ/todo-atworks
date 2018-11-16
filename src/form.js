@@ -8,14 +8,21 @@ class TodoForm extends React.Component {
     }
     this.addTodo = this.addTodo.bind(this);
     this.handleChange = this.handleChange.bind(this);
+
+    this.inputText = null;
+
+    this.setInputRef = (element) => {
+      this.inputElement = element;
+    }
   }
 
 
   addTodo(event) {
+    console.log(this.inputElement.value);
     event.preventDefault();
     // Ensure a todo was actually entered before submitting
-    if (this.state.input.length > 0) {
-      this.props.addTodo(this.state.input);
+    if (this.inputElement.value.length > 0) {
+      this.props.addTodo(this.inputElement.value);
       this.setState({ input: '' });
     }
   }
@@ -33,8 +40,9 @@ class TodoForm extends React.Component {
         <div className="col-9">
           <form className="form-group">
             <input
-              onChange={this.handleChange}
               type="text"
+              ref={this.setInputRef}
+              onChange={this.handleChange}
               placeholder="Add a todo item"
               value={this.state.input}
               className=""></input>
